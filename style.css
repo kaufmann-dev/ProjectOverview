@@ -1,0 +1,11 @@
+div.site {
+    display: block;
+    background-color: var(--darker-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+}
+#searchWrapper {
+    margin-top: 20px;
+}
