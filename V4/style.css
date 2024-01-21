@@ -1,0 +1,99 @@
+body {
+    width: 800px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    background-color: #121212;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    padding: 20px 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #e1e1e1;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+/* Search */
+#searchBox {
+    /*margin-bottom: 20px;*/
+    overflow: hidden;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    vertical-align: top;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: box-shadow 0.5s;
+}
+#searchBox:not(.sticky) {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+#searchInput {
+    vertical-align: top;
+    height: 24px;
+    background-color: #1e1e1e;
+    color: #e1e1e1;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+.material-icons {
+    display: block;
+    color:#e1e1e1;
+    margin-right: 8px;
+    float: left;
+    cursor: default;
+}
+#wrapperSpan {
+    display: block;
+    overflow: hidden;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.6), 0 15px 12px rgba(0,0,0,0.5);
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.sticky + #sitesWrapper {
+    padding-top: 60px;
+}
+
+/* Sites */
+#sitesWrapper {
+    padding: 20px 0;
+}
+.site {
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transition: background-color 0.2s;
+}
+.site:hover {
+    background-color: #2c2c2c;
+}
+.site h3 {
+    margin: 0 0 7px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #e1e1e1;
+}
+.site p {
+    margin: 0 0 12px 0;
+    color: #ccc;
+}
+.tag {
+    background-color: #2c2c2c;
+    border-radius: 3px;
+    color: #727272;
+    padding: 0 4px;
+    margin-right: 7px;
+}
