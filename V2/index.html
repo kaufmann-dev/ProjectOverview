@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Websites</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+		html, body, .parent {
+			height: 100%;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.parent {
+			background-color: #ddd;
+			padding: 1vw;
+			height: 100%;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: repeat(4, 1fr);
+			grid-column-gap: 1vw;
+			grid-row-gap: 1vw;
+		}
+		.parent div {
+			cursor: pointer;
+			font-family: 'Verdana';
+			text-align: center;
+			border-radius: 1vw;
+			overflow: hidden;
+			box-shadow: 0px 0px 1vw 0px rgba(0,0,0,0.5);
+		}
+		.parent div:hover {
+			outline-style: dashed;
+		}
+		.div1 { grid-area: 1 / 1 / 2 / 2; background-color: #ce212c; color: #fff; font-size: 2vw; }
+		.div2 { grid-area: 1 / 2 / 2 / 3; background-color: #104d84; color: #fff; font-size: 2vw; }
+		.div3 { grid-area: 1 / 3 / 2 / 4; background-color: #4b5436; color: #fff; font-size: 1.9vw; }
+		.div4 { grid-area: 1 / 4 / 2 / 5; background-color: #fe7a37; color: #fff; font-size: 1.9vw; }
+		.div5 { grid-area: 2 / 1 / 3 / 2; background-color: #edd69e; color: #000; font-size: 2vw; }
+		.div6 { grid-area: 2 / 2 / 3 / 3; background-color: #9b4921; color: #fff; font-size: 2vw; }
+		.div7 { grid-area: 2 / 3 / 3 / 4; background-color: #b99b73; color: #fff; font-size: 2vw; }
+		.div8 { grid-area: 2 / 4 / 3 / 5; background-color: #edf2fe; color: #000; font-size: 2vw; }
+		.div9 { grid-area: 3 / 1 / 4 / 2; background-color: #ffa600; color: #fff; font-size: 2vw; }
+		.div10 { grid-area: 3 / 2 / 4 / 3; background-color: #55c7aa; color: #fff; font-size: 1.15vw; }
+		.div11 { grid-area: 3 / 3 / 4 / 4; background-color: #798ea5; color: #fff; font-size: 2vw; }
+		.div12 { grid-area: 3 / 4 / 4 / 5; background-color: #00768f; color: #fff; font-size: 2vw; }
+		.div13 { grid-area: 4 / 1 / 5 / 2; background-color: #eaa89a; color: #fff; font-size: 2vw; }
+		.div14 { grid-area: 4 / 2 / 5 / 3; background-color: #6b5976; color: #fff; font-size: 2vw; }
+		.div15 { grid-area: 4 / 3 / 5 / 4; background-color: #272e3c; color: #fff; font-size: 2vw; }
+		.div16 { grid-area: 4 / 4 / 5 / 5; background-color: #a09c9d; color: #fff; font-size: 2vw; }
+	</style>
+</head>
+<body>
+	<div class="parent">
+		<div class="div1" onclick="window.open('websites/theme_changer/index.html', '_blank')">Theme Changer</div>
+		<div class="div2" onclick="window.open('websites/audio_player/index.html', '_blank')">Audio Player</div>
+		<div class="div3" onclick="window.open('websites/audio_playlist_player/index.html', '_blank')">Audio-Playlist Player</div>
+		<div class="div6" onclick="window.open('websites/code_in_html/index.html', '_blank')">Code in HTML</div>
+		<div class="div7" onclick="window.open('websites/dropdown_navbar/navbar.html', '_blank')">Dropdown Navbar</div>
+		<div class="div8" onclick="window.open('websites/golden_blog/home.html', '_blank')">Golden Blog</div>
+		<div class="div9" onclick="window.open('websites/image_scaler/img_grid.html', '_blank')">Image Scaler</div>
+		<div class="div11" onclick="window.open('websites/image_grid/index.html', '_blank')">Image Grid</div>
+		<div class="div12" onclick="window.open('websites/video_player/index.html', '_blank')">Video Player</div>
+		<div class="div14" onclick="window.open('websites/file_browser/index.html', '_blank')">File Browser</div>
+		<div class="div15" onclick="window.open('websites/password_validation/index.html', '_blank')">Password validation</div>
+		<div class="div16" onclick="window.open('websites/color_palettes/index.html', '_blank')">Color Palettes</div>
+	</div>
+
+	<script type="text/javascript">
+		$('.parent div').each(function() {
+			$(this).css("line-height", $(this).height() + 'px');
+		});
+		$(window).resize(function() {
+			$('.parent div').each(function() {
+				$(this).css("line-height", $(this).height() + 'px');
+			});
+		});
+	</script>
+</body>
+</html>

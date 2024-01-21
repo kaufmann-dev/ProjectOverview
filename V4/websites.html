@@ -1,0 +1,297 @@
+<html>
+<header>
+    <title>My Websites</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="src/logo.ico">
+    <link rel="apple-touch-icon" href="src/logo.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            width: 800px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #121212;
+            box-sizing: border-box;
+        }
+        #searchBox {
+            margin-bottom: 20px;
+            overflow: hidden;
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            vertical-align: top;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        #searchInput {
+            vertical-align: top;
+            height: 24px;
+            background-color: #1e1e1e;
+            color: #e1e1e1;
+            outline: none;
+            border: none;
+            width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+        }
+        .material-icons {
+            display: block;
+            color:#e1e1e1;
+            margin-right: 8px;
+            float: left;
+        }
+        #wrapperSpan {
+            display: block;
+            overflow: hidden;
+        }
+        #websiteWrapper {
+
+        }
+        #websiteWrapper > div {
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+        }
+        #websiteWrapper > div:hover {
+            background-color: #2c2c2c;
+        }
+        #websiteWrapper > div h1 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #e1e1e1;
+        }
+        #websiteWrapper > div p {
+            margin: 0 0 10px 0;
+            color: #ccc;
+        }
+        .prop {
+            background-color: #2c2c2c;
+            border-radius: 3px;
+            color: #727272;
+            padding: 0 4px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            var $divs = $("#websiteWrapper > div");
+            var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
+                var at = $(a).find("h1").text();
+                var bt =  $(b).find("h1").text();
+                return at > bt ? 1 : (at < bt ? -1 : 0);
+            });
+            $("#websiteWrapper").html(alphabeticallyOrderedDivs);
+
+            $("#searchInput").on("change paste keyup", function() {
+                $("#websiteWrapper > div").each(function () {
+                    if($(this).text().toLowerCase().indexOf($("#searchInput").val().toLowerCase()) >= 0){
+                        $(this).css("display", "block");
+                    } else {
+                        $(this).css("display", "none");
+                    }
+                });
+            });
+
+            $('#websiteWrapper > div').click(function() {
+                window.open($(this).data('src'));
+            });
+
+            var amount = 0;
+            $("#websiteWrapper > div").each(function () {
+                amount++;
+            });
+            $('#searchInput').attr("placeholder", "Search (" + amount + ")");
+
+            switch(window.location.protocol) {
+                case 'http:':
+                    console.log("http");
+                    CheckExist();
+                    break;
+                case 'https:':
+                    console.log("https");
+                    CheckExist();
+                    break;
+                case 'file:':
+                    console.log("file");
+                    console.log("Some sites may not function without a server!");
+                    break;
+                default:
+                    console.log("other");
+                    console.log("What are you doing?");
+            }
+
+            function CheckExist() {
+                $("#websiteWrapper > div").each(function () {
+                   let url = $(this).data("src");
+                    $.get(url)
+                        .done(function() {
+                            console.log("SUCCESS: " + url + " does exist");
+                        }).fail(function() {
+                            console.error("ERROR: " + url + " does not exist")
+                    })
+                });
+            }
+        });
+    </script>
+</header>
+<body>
+    <div id="searchBox">
+        <span class="material-icons">search</span><span id="wrapperSpan"><input type="text" id="searchInput" autocomplete="off"></span>
+    </div>
+
+    <div id="websiteWrapper">
+        <div data-src='src/audio_player/index.html'>
+            <h1>Audio Player: Single</h1>
+            <p>Better than the built-in HTML audio player.</p>
+            <span class="prop">component</span>
+            <span class="prop">audio</span>
+        </div>
+        <div data-src='src/audio_playlist_player/index.html'>
+            <h1>Audio Player: Playlist</h1>
+            <p>Much more complex and advanced than Audio Player: Single or the built in HTML5 audio player.</p>
+            <span class="prop">component</span>
+            <span class="prop">audio</span>
+        </div>
+        <div data-src='src/video_player/index.html'>
+            <h1>Video Player</h1>
+            <p>Better than the built-in HTML video player.</p>
+            <span class="prop">component</span>
+            <span class="prop">video</span>
+        </div>
+        <div data-src='src/golden_blog/home.html'>
+            <h1>Golden Blog</h1>
+            <p>My second bigger website-project, you can already see some improvements.</p>
+            <span class="prop">complete website</span>
+        </div>
+        <div data-src='src/code_in_html/index.html'>
+            <h1>Code in HTML</h1>
+            <p>Elegantly display code from different languages in your website.</p>
+            <span class="prop">component</span>
+        </div>
+        <div data-src='src/dropdown_navbar/navbar.html'>
+            <h1>Dropdown Navbar</h1>
+            <p>A simple pure css dropdown navbar. Not even classes (which kinda makes it worse).</p>
+            <span class="prop">component</span>
+        </div>
+        <div data-src='src/image_scaler/img_grid.html'>
+            <h1>Image Scaler</h1>
+            <p>Scales images so they just fit.</p>
+            <span class="prop">component</span>
+        </div>
+        <div data-src='src/image_grid/index.html'>
+            <h1>Image Grid</h1>
+            <p>A good way to display many images at once.</p>
+            <span class="prop">component</span>
+        </div>
+        <div data-src='src/theme_changer/index.html'>
+            <h1>Theme Changer</h1>
+            <p>Switch through a dark and a light theme. One of my first projects.</p>
+            <span class="prop">old</span>
+        </div>
+        <div data-src='src/file_browser/index.html'>
+            <h1>File Browser</h1>
+            <p>"File browser in browser." Works best with the old IE, but you probably should not use this anyway.</p>
+            <span class="prop">component</span>
+            <span class="prop">old</span>
+        </div>
+        <div data-src='src/password_validation/index.html'>
+            <h1>Password validation</h1>
+            <p>Secures an element with a password and deletes it from the DOM. You can still see the original content without a password if you look at the source, so only use it in a cosmetic context.</p>
+            <span class="prop">component</span>
+            <span class="prop">security</span>
+        </div>
+        <div data-src='src/color_palettes/index.html'>
+            <h1>Color Palettes</h1>
+            <p>Save color palettes and get their respectable values.</p>
+            <span class="prop">tool</span>
+        </div>
+        <div data-src='src/direct_alert/index.html'>
+            <h1>Direct Alert</h1>
+            <p>Tool for displaying alert and error messages.</p>
+            <span class="prop">component</span>
+        </div>
+        <div data-src='src/webp_compression/index.html'>
+            <h1>WebP Compression</h1>
+            <p>Compare different levels of WebP compression.</p>
+            <span class="prop">tool</span>
+        </div>
+        <div data-src='src/twitter/index.html'>
+            <h1>Display Tweets</h1>
+            <p>Display tweets without loading all the bloat from Twitter into your website.</p>
+            <span class="prop">component</span>
+        </div>
+        <div data-src="src/bootstrap_grid/index.html">
+            <h1>Bootstrap grid</h1>
+            <p>See how aspects of the Bootstrap grid system work across multiple devices with this handy table.</p>
+            <span class="prop">tool</span>
+        </div>
+        <div data-src="https://kaufmann-dev.github.io/">
+            <h1>BMI Calculator</h1>
+            <p>Calculate your BMI with your input height and weight or vice versa. The capability to calculate in all directions make this BMI calculator superior to other alternatives.</p>
+            <span class="prop">tool</span>
+            <span class="prop">material design</span>
+            <span class="prop">date</span>
+            <span class="prop">02.03.2021</span>
+        </div>
+        <div data-src="src/ddos_protect/index.html">
+            <h1>DDOS Protect</h1>
+            <p>Welcome to DDOS-PROTECT! We are PROUD to offer a great palette of security modules, including ddos-protect and virus-mitigator. We use the newest technology combined with industry standards and knowledge to make your life more secure and better.</p>
+            <span class="prop">fun</span>
+            <span class="prop">joke</span>
+            <span class="prop">date</span>
+            <span class="prop">03.03.2021</span>
+        </div>
+        <div data-src="https://d-kaufmann.github.io/">
+            <h1>Convert number systems</h1>
+            <p>Convert binary to decimal or hexadecimal and vice versa.</p>
+            <span class="prop">zahlensysteme</span>
+            <span class="prop">tool</span>
+        </div>
+        <div data-src="src/veryoldwebsiteviewer/index.html">
+            <h1>Website viewer 1.0</h1>
+            <p>Predecessor to predecessor to this website.</p>
+            <span class="prop">old</span>
+            <span class="prop">tool</span>
+        </div>
+        <div data-src="src/oldwebsiteviewer/index.html">
+            <h1>Website viewer 2.0</h1>
+            <p>Predecessor to this website.</p>
+            <span class="prop">old</span>
+            <span class="prop">tool</span>
+        </div>
+        <div data-src="src/foodmap/index.html">
+            <h1>Food map</h1>
+            <p>Website for displaying information about food and dishes.</p>
+            <span class="prop">tool</span>
+            <span class="prop">material design</span>
+        </div>
+        <div data-src="src/themechangerwithplayers/kek.html">
+            <h1>Theme changer with video and audio players</h1>
+            <p>Switch through a dark and a light theme, and also play music and play a video.</p>
+            <span class="prop">old</span>
+        </div>
+        <div data-src="src/grundlagen/index.html">
+            <h1>School 1</h1>
+            <p>Website for school.</p>
+            <span class="prop">school</span>
+        </div>
+        <div data-src="src/sk00l/index.html">
+            <h1>School 2</h1>
+            <p>Website for school.</p>
+            <span class="prop">school</span>
+        </div>
+        <div data-src="src/schoolArticles/index.html">
+            <h1>School 3</h1>
+            <p>Website for school.</p>
+            <span class="prop">school</span>
+        </div>
+    </div>
+</body>
+</html>
